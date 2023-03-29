@@ -1,8 +1,8 @@
 package au.ntcrs6.trackiffy.driver;
 
 public class DriverService {
-    public String register(DriverRequest request) {
+    public String register(DriverEntity request) {
 
-        return null;
+        return "\u001B[32mWORKS\u001B[0m";
     }
 }
