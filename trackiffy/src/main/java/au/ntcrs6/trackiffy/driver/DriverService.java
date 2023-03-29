@@ -1,8 +1,38 @@
 package au.ntcrs6.trackiffy.driver;
 
-public class DriverService {
-    public String register(DriverEntity request) {
+import java.util.Calendar;
+import java.util.Date;
 
-        return "\u001B[32mWORKS\u001B[0m";
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import au.ntcrs6.trackiffy.utilities.Enumerator;
+import au.ntcrs6.trackiffy.utilities.RandomStringGenerator;
+
+@Service
+public class DriverService {
+
+    @Autowired
+    private DriverRepository driverRepository;
+
+    public ResponseEntity<Object> register(DriverEntity driverInstance) {
+        driverInstance.setLicenceNumber(RandomStringGenerator.generateLicenseNumber());
+        driverInstance.setDocumentNumber(RandomStringGenerator.generateDocumentNumber());
+        driverInstance.setIssudeDate(new Date());
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.YEAR, Enumerator.DRIVER_LICENCE_EXPIRATION_DURATION);
+        driverInstance.setExpireDate(new Date());
+
+        driverInstance.setStatus(Enumerator.DRIVER_DEFAULT_STATUS);
+        driverInstance.setRecord(Enumerator.DRIVER_DEFAULT_RECORD);
+        System.out.println("SERVICE REACHED");
+        driverInstance.toString();
+        driverRepository.save(driverInstance);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

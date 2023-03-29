@@ -5,10 +5,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+@Entity
 public class DriverEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id;
     private Date startDate; // to store experience
     private Date dateOfBirth;
@@ -20,7 +26,7 @@ public class DriverEntity {
     private int heightInCm;
     private char sex;
 
-    // Saved as default values
+    // Will have default values
     private String licenceNumber;
     private String documentNumber;
     private Date issudeDate;
@@ -42,11 +48,39 @@ public class DriverEntity {
         this.licenceClass = licenceClass;
     }
 
+    public void setLicenceNumber(String licenceNumber) {
+        this.licenceNumber = licenceNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+
+    public void setIssudeDate(Date issudeDate) {
+        this.issudeDate = issudeDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setRecord(int record) {
+        this.record = record;
+    }
+
     @Override
     public String toString() {
-        return "DriverEntity [startDate=" + startDate + ", firstName=" + firstName + ", lastName=" + lastName
-                + ", address=" + address + ", dateOfBirth=" + dateOfBirth + ", heightInCm=" + heightInCm + ", sex="
-                + sex + ", licenceClass=" + licenceClass + ", province=" + province + "]";
+        System.out.println("\u001B[32m" + "DriverEntity [id=" + id + ", startDate=" + startDate + ", dateOfBirth="
+                + dateOfBirth + ", firstName="
+                + firstName + ", lastName=" + lastName + ", address=" + address + ", licenceClass=" + licenceClass
+                + ", province=" + province + ", heightInCm=" + heightInCm + ", sex=" + sex + ", licenceNumber="
+                + licenceNumber + ", documentNumber=" + documentNumber + ", issudeDate=" + issudeDate + ", expireDate="
+                + expireDate + ", status=" + status + ", record=" + record + "]" + "\u001B[0m");
+        return null;
     }
 
 }
