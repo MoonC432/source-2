@@ -29,7 +29,6 @@ public class VehicleController {
             HttpServletRequest request, HttpServletResponse response) {
         ObjectMapper mapper = new ObjectMapper();
         VehicleEntity vehicle = mapper.convertValue(vehiclePayload, VehicleEntity.class);
-        vehicle.toString();
         return vehicleService.register(vehicle);
 
     }

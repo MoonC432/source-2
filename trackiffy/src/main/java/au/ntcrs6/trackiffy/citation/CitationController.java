@@ -1,4 +1,4 @@
-package au.ntcrs6.trackiffy.driver;
+package au.ntcrs6.trackiffy.citation;
 
 import java.util.List;
 import java.util.Map;
@@ -18,38 +18,27 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping(path = "api/v1/driver")
-
-public class DriverController {
+@RequestMapping(path = "api/v1/citation")
+public class CitationController {
 
     @Autowired
-    private DriverService driverService;
+    private CitationService citationService;
 
-    @PostMapping("/register")
-    public ResponseEntity<Object> registerDriver(@RequestBody Map<String, Object> driverPayload,
-            HttpServletRequest request,
-            HttpServletResponse reponse) {
-
+    @PostMapping("/issue")
+    public ResponseEntity<Object> issueCitation(@RequestBody Map<String, Object> citationPayload,
+            HttpServletRequest request, HttpServletResponse response) {
         ObjectMapper mapper = new ObjectMapper();
-
-        DriverEntity driver = mapper.convertValue(driverPayload, DriverEntity.class);
-
-        return driverService.register(driver);
-
+        CitationEntity citation = mapper.convertValue(citationPayload, CitationEntity.class);
+        return citationService.issueCitation(citation);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<DriverEntity>> findDriver(
-            @RequestParam(name = "licenceNumber", required = false) String licenceNumber) {
-
-        List<DriverEntity> drivers = driverService.findByLicenceNumber(licenceNumber);
-
-        if (drivers == null || drivers.isEmpty()) {
+    public ResponseEntity<List<CitationEntity>> getCitaionsUnderADriver(
+            @RequestParam(name = "driverId", required = true) Long driverId) {
+        List<CitationEntity> citations = citationService.getCitaionsByDriverId(driverId);
+        if (citations == null || citations.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-
-        return ResponseEntity.ok(drivers);
-
+        return ResponseEntity.ok(citations);
     }
-
 }

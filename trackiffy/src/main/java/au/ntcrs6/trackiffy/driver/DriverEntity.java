@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.annotation.PersistenceCreator;
 
 import jakarta.persistence.Entity;
