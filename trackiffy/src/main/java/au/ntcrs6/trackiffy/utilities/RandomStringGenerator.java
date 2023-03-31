@@ -25,4 +25,17 @@ public class RandomStringGenerator {
         }
         return sb.toString();
     }
+
+    public static String generateVIN() {
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder builder = new StringBuilder();
+        Random random = new Random();
+
+        for (int i = 0; i < 17; i++) {
+            int index = random.nextInt(chars.length());
+            builder.append(chars.charAt(index));
+        }
+
+        return builder.toString();
+    }
 }

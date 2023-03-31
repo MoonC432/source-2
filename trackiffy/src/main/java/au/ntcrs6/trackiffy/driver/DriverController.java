@@ -28,7 +28,7 @@ public class DriverController {
     private DriverService driverService;
 
     @PostMapping("/register")
-    public ResponseEntity<Object> registerANewDriver(@RequestBody Map<String, Object> driverPayload,
+    public ResponseEntity<Object> registerDriver(@RequestBody Map<String, Object> driverPayload,
             HttpServletRequest request,
             HttpServletResponse reponse) {
         System.out.println("\u001B[32m" + "Controller reached" + "\u001B[0m");
@@ -37,7 +37,6 @@ public class DriverController {
         ObjectMapper mapper = new ObjectMapper();
 
         DriverEntity driver = mapper.convertValue(driverPayload, DriverEntity.class);
-        // driver.toString();
 
         return driverService.register(driver);
 
@@ -47,7 +46,6 @@ public class DriverController {
     public ResponseEntity<List<DriverEntity>> findDriver(
             @RequestParam(name = "licenceNumber", required = false) String licenceNumber) {
 
-        System.out.println("\u001B[32m" + licenceNumber + "\u001B[0m");
         List<DriverEntity> drivers = driverService.findByLicenceNumber(licenceNumber);
 
         if (drivers == null || drivers.isEmpty()) {

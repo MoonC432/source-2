@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import au.ntcrs6.trackiffy.utilities.Enumerator;
 import au.ntcrs6.trackiffy.utilities.RandomStringGenerator;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class DriverService {
@@ -32,7 +33,6 @@ public class DriverService {
         driverInstance.setStatus(Enumerator.DRIVER_DEFAULT_STATUS);
         driverInstance.setRecord(Enumerator.DRIVER_DEFAULT_RECORD);
 
-        driverInstance.toString();
         driverRepository.save(driverInstance);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -40,6 +40,13 @@ public class DriverService {
 
     public List<DriverEntity> findByLicenceNumber(String licenceNumber) {
         List<DriverEntity> driver = driverRepository.findByLicenceNumber(licenceNumber);
+        return driver;
+    }
+
+    public DriverEntity findDriverById(int id) {
+
+        DriverEntity driver = driverRepository.findById(Long.valueOf(id))
+                .orElseThrow(() -> new EntityNotFoundException("Driver Not Found"));
         driver.toString();
         return driver;
     }
