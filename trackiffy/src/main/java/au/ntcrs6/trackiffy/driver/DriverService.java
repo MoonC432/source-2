@@ -2,6 +2,8 @@ package au.ntcrs6.trackiffy.driver;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,10 +31,17 @@ public class DriverService {
 
         driverInstance.setStatus(Enumerator.DRIVER_DEFAULT_STATUS);
         driverInstance.setRecord(Enumerator.DRIVER_DEFAULT_RECORD);
-        System.out.println("SERVICE REACHED");
+
         driverInstance.toString();
         driverRepository.save(driverInstance);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    public List<DriverEntity> findByLicenceNumber(String licenceNumber) {
+        List<DriverEntity> driver = driverRepository.findByLicenceNumber(licenceNumber);
+        driver.toString();
+        return driver;
+    }
+
 }
