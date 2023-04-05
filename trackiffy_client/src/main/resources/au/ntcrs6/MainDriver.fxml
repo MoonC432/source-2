@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="26.0" prefWidth="654.0" BorderPane.alignment="CENTER">
+      
+           
+            
+          <fx:include source="SearchDriver.fxml" />
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="358.0" prefWidth="654.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="228.0" text="Driver Entry Form">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <GridPane layoutX="14.0" layoutY="61.0" prefHeight="166.0" prefWidth="364.0" vgap="10.0" AnchorPane.bottomAnchor="150.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.60001220703126" minWidth="0.0" prefWidth="147.200048828125" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="179.19995117187497" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="18.0" prefWidth="154.0" text="Last Name" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="35.0" prefWidth="154.0" text="First Name">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextField>
+                  <Label prefHeight="18.0" prefWidth="154.0" text="Address" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="18.0" prefWidth="154.0" text="Height (cm)" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="18.0" prefWidth="154.0" text="Start Date" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <DatePicker prefHeight="26.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label prefHeight="18.0" prefWidth="154.0" text="Date Of Birth" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <DatePicker prefHeight="26.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <Label layoutX="397.0" layoutY="49.0" prefHeight="44.0" prefWidth="46.0" text="Sex">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="sexComboBox" layoutX="496.0" layoutY="58.0" prefHeight="26.0" prefWidth="106.0" />
+            <Separator layoutY="-8.0" prefHeight="23.0" prefWidth="653.0" />
+            <Label layoutX="397.0" layoutY="106.0" text="Licence class">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="licenceClassComboBox" layoutX="496.0" layoutY="103.0" prefHeight="26.0" prefWidth="106.0" />
+            <Label layoutX="397.0" layoutY="156.0" text="Province">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox id="provinceBox" layoutX="496.0" layoutY="153.0" prefHeight="26.0" prefWidth="106.0" />
+            <Button layoutX="398.0" layoutY="202.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="104.0" text="Submit">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

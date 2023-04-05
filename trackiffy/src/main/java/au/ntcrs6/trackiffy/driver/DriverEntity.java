@@ -31,7 +31,7 @@ public class DriverEntity {
     // Will have default values
     private String licenceNumber;
     private String documentNumber;
-    private Date issudeDate;
+    private Date issueDate;
     private Date expireDate;
     private String status;
     private int record; // to store accrued points
@@ -65,8 +65,8 @@ public class DriverEntity {
         this.documentNumber = documentNumber;
     }
 
-    public void setIssudeDate(Date issudeDate) {
-        this.issudeDate = issudeDate;
+    public void setIssueDate(Date issudeDate) {
+        this.issueDate = issudeDate;
     }
 
     public void setExpireDate(Date expireDate) {
@@ -165,8 +165,8 @@ public class DriverEntity {
         return documentNumber;
     }
 
-    public Date getIssudeDate() {
-        return issudeDate;
+    public Date getIssueDate() {
+        return issueDate;
     }
 
     public Date getExpireDate() {
@@ -195,7 +195,7 @@ public class DriverEntity {
                 + dateOfBirth + ", firstName="
                 + firstName + ", lastName=" + lastName + ", address=" + address + ", licenceClass=" + licenceClass
                 + ", province=" + province + ", heightInCm=" + heightInCm + ", sex=" + sex + ", licenceNumber="
-                + licenceNumber + ", documentNumber=" + documentNumber + ", issudeDate=" + issudeDate + ", expireDate="
+                + licenceNumber + ", documentNumber=" + documentNumber + ", issudeDate=" + issueDate + ", expireDate="
                 + expireDate + ", status=" + status + ", record=" + record + "]" + "\u001B[0m");
         return null;
     }

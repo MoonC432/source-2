@@ -22,7 +22,7 @@ public class DriverService {
     public ResponseEntity<Object> register(DriverEntity driverInstance) {
         driverInstance.setLicenceNumber(RandomStringGenerator.generateLicenseNumber());
         driverInstance.setDocumentNumber(RandomStringGenerator.generateDocumentNumber());
-        driverInstance.setIssudeDate(new Date());
+        driverInstance.setIssueDate(new Date());
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
