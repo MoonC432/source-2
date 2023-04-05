@@ -306,7 +306,7 @@
          </font>
       </Button>
       <Button fx:id="gotoMainDriverButton" layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#switchToMainDriver" prefHeight="34.0" prefWidth="52.0" text="&lt; Back" />
-      <Button fx:id="seeCitationsButton" layoutX="430.0" layoutY="287.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="151.0" style="-fx-background-radius: 20; -fx-background-color: #57C5B6;" text="See Citations">
+      <Button fx:id="seeCitationsButton" layoutX="430.0" layoutY="287.0" mnemonicParsing="false" onAction="#seeCitationsAndSessionsAction" prefHeight="34.0" prefWidth="151.0" style="-fx-background-radius: 20; -fx-background-color: #57C5B6;" text="See Citations">
          <font>
             <Font size="14.0" />
          </font>

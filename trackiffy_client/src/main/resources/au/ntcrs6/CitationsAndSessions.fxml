@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:controller="au.ntcrs6.controllers.CitationsAndSessionsController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="202.0" layoutY="14.0" text="Citations Record">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="citationsTable" layoutX="14.0" layoutY="55.0" prefHeight="200.0" prefWidth="507.0">
+        <columns>
+          <TableColumn fx:id="issueDateCol" prefWidth="106.3999605178833" text="Issue Date" />
+          <TableColumn fx:id="locationCol" prefWidth="150.40003967285156" text="Location" />
+            <TableColumn fx:id="descriptionCol" prefWidth="248.7999755859375" text="Description" />
+        </columns>
+      </TableView>
+      <TableView fx:id="drivingSessionTable" layoutX="538.0" layoutY="55.0" prefHeight="200.0" prefWidth="286.0">
+        <columns>
+          <TableColumn fx:id="startDateCol" prefWidth="112.800048828125" text="Start Date" />
+          <TableColumn fx:id="durationCol" prefWidth="88.0" text="Druation (hr)" />
+            <TableColumn fx:id="numberCol" prefWidth="84.00003662109373" text="Number" />
+        </columns>
+      </TableView>
+      <Label layoutX="620.0" layoutY="14.0" text="Driving Session">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="14.0" layoutY="266.0" prefHeight="166.0" prefWidth="382.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="78.599951171875" minHeight="10.0" prefHeight="31.80001220703125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="135.40003051757813" minHeight="10.0" prefHeight="134.19998779296876" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="32.0" prefWidth="191.0" text="Location" textFill="#666666">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="130.0" prefWidth="207.0" text="Description" textFill="#666666" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="locationInput" GridPane.columnIndex="1" />
+            <TextArea fx:id="descriptionInput" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Button fx:id="issueCitationButton" layoutX="419.0" layoutY="395.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="102.0" text="Issue Citation" />
+      <GridPane layoutX="538.0" layoutY="271.0" prefHeight="123.0" prefWidth="258.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.2" minWidth="10.0" prefWidth="134.40001220703124" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.59998779296876" minWidth="10.0" prefWidth="123.59998779296876" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="66.19998779296876" minHeight="10.0" prefHeight="60.800024414062506" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="77.4" minHeight="10.0" prefHeight="62.3999755859375" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <GridPane layoutX="548.0" layoutY="281.0" prefHeight="98.0" prefWidth="258.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.2" minWidth="10.0" prefWidth="134.40001220703124" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.59998779296876" minWidth="10.0" prefWidth="123.59998779296876" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="66.19998779296876" minHeight="10.0" prefHeight="38.1999755859375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.4" minHeight="10.0" prefHeight="39.39997558593749" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.4" minHeight="10.0" prefHeight="32.20002441406251" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label prefHeight="65.0" prefWidth="135.0" text="Start Date" textFill="#666666">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="65.0" prefWidth="135.0" text="Duration (hr)" textFill="#666666" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="startDateInput" GridPane.columnIndex="1" />
+            <TextField fx:id="durationInput" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefHeight="65.0" prefWidth="135.0" text="Vehicle" textFill="#666666" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="vehicleInput" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <Button fx:id="drivingSessionButton" layoutX="672.0" layoutY="402.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" text="Create Driving Session" />
+   </children>
+</AnchorPane>

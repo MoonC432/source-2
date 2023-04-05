@@ -142,4 +142,26 @@ public class DriverInfoController {
 
     }
 
+    public void seeCitationsAndSessionsAction() throws IOException {
+        HttpRequest request = new HttpRequest();
+        String citationsResponse = request.sendGetRequest("/api/v1/citation?driverId=", driver.get("id").asText());
+        ResponseHolder.setCitations(citationsResponse);
+        String sessionsResponse = request.sendGetRequest("/api/v1/session?driverId=", driver.get("id").asText());
+        ResponseHolder.setSessions(sessionsResponse);
+        String vehiclesResponse = request.sendGetRequest("/api/v1/vehicle?driverId=", driver.get("id").asText());
+        ResponseHolder.setVehicles(vehiclesResponse);
+        showCitaionsAndSessionsInfo();
+    }
+
+    public void showCitaionsAndSessionsInfo() throws IOException {
+        // citaions And Sessions
+        Parent cASRoot = FXMLLoader.load(getClass().getResource("/au/ntcrs6/CitationsAndSessions.fxml"));
+
+        Scene cASScene = new Scene(cASRoot);
+
+        Stage cASStage = new Stage();
+        cASStage.setScene(cASScene);
+        cASStage.show();
+    }
+
 }

@@ -63,13 +63,13 @@ public class VehicleInfoController {
     @JsonIgnoreProperties(ignoreUnknown = true)
 
     public static class Vehicle {
-        public String make;
-        public String model;
-        public int year;
-        public String licensePlate;
-        public String color;
-        public String registrationDate;
-        public String vin;
+        private String make;
+        private String model;
+        private int year;
+        private String licensePlate;
+        private String color;
+        private String registrationDate;
+        private String vin;
 
         Vehicle() {
         };
