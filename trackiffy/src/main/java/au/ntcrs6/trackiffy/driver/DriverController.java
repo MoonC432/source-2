@@ -1,5 +1,6 @@
 package au.ntcrs6.trackiffy.driver;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +46,7 @@ public class DriverController {
         List<DriverEntity> drivers = driverService.findByLicenceNumber(licenceNumber);
 
         if (drivers == null || drivers.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            drivers = new ArrayList<>();
         }
 
         return ResponseEntity.ok(drivers);
