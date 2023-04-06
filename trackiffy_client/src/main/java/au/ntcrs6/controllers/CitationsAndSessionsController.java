@@ -288,7 +288,6 @@ public class CitationsAndSessionsController {
             };
             List<JsonNode> vehicles = mapper.readValue(ResponseHolder.getVehicles(), typeRef);
 
-            System.out.println("YOUR VEHICLES" + vehicles);
             for (JsonNode v : vehicles) {
                 if (v.get("id").asText().equals(vehicleId)) {
                     vehicleNumber = v.get("licensePlate").asText();
