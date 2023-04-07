@@ -3,11 +3,8 @@ package au.ntcrs6.controllers;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +14,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -71,7 +67,7 @@ public class SendDriverInfoController {
         ObservableList<String> licenceClassList = FXCollections.observableArrayList();
         licenceClassList.addAll("A", "B", "C", "D", "E", "F", "G", "G1", "G2", "M", "M1", "M2");
         ObservableList<String> sexList = FXCollections.observableArrayList();
-        sexList.addAll("M", "F", "Other");
+        sexList.addAll("M", "F");
 
         provinceComboBox.setItems(provinceList);
         licenceClassComboBox.setItems(licenceClassList);
@@ -109,7 +105,15 @@ public class SendDriverInfoController {
         HttpRequest request = new HttpRequest();
         request.sendPostRequest("/api/v1/driver/register", jsonPayload);
 
-        System.out.println();
+        addressInput.clear();
+        dateOfBirthInput.setValue(null);
+        firstNameInput.clear();
+        heightInput.clear();
+        lastNameInput.clear();
+        licenceClassComboBox.getSelectionModel().clearSelection();
+        provinceComboBox.getSelectionModel().clearSelection();
+        sexComboBox.getSelectionModel().clearSelection();
+        startDateInput.setValue(null);
 
     }
 

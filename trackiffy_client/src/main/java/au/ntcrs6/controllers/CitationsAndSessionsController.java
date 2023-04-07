@@ -3,10 +3,18 @@ package au.ntcrs6.controllers;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import au.ntcrs6.controllers.VehicleInfoController.Vehicle;
+import au.ntcrs6.utils.HttpRequest;
 import au.ntcrs6.utils.ResponseHolder;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -70,7 +78,7 @@ public class CitationsAndSessionsController {
     private DatePicker startDateInput;
 
     @FXML
-    private ComboBox<?> vehicleInput;
+    private ComboBox<String> vehicleInput;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Citation {
@@ -207,7 +215,77 @@ public class CitationsAndSessionsController {
 
     }
 
-    public void initialize() {
+    private Long selectedCitationId;
+    ObjectMapper mapper = new ObjectMapper();
+
+    public void createCitation() throws IOException {
+        Map<String, Object> citationDetails = new HashMap<>();
+        JsonNode driver = mapper.readTree(ResponseHolder.getDriverDetails()).get(0);
+
+        citationDetails.put("location", locationInput.getText());
+        citationDetails.put("description", descriptionInput.getText());
+        citationDetails.put("driverId", driver.get("id").asLong());
+        String jsonPayload = mapper.writeValueAsString(citationDetails);
+        HttpRequest request = new HttpRequest();
+        request.sendPostRequest("/api/v1/citation/issue", jsonPayload);
+
+        locationInput.clear();
+        descriptionInput.clear();
+
+    }
+
+    public void createDrivingSession() throws IOException {
+        Map<String, Object> sessionDetails = new HashMap<>();
+        JsonNode driver = mapper.readTree(ResponseHolder.getDriverDetails()).get(0);
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        Date startDate = null;
+
+        try {
+            startDate = inputFormat.parse(startDateInput.getValue().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        sessionDetails.put("driverId", driver.get("id").asLong());
+        sessionDetails.put("citationId", selectedCitationId);
+        sessionDetails.put("startDate", outputFormat.format(startDate));
+        sessionDetails.put("durationInHours", Integer.parseInt(durationInput.getText()));
+        // vehicleId
+        sessionDetails.put("vehicleId", getVehicleIdFromLicensePlate(vehicleInput.getValue()));
+        String jsonPayload = mapper.writeValueAsString(sessionDetails);
+
+        HttpRequest request = new HttpRequest();
+        request.sendPostRequest("/api/v1/session/issue", jsonPayload);
+        ;
+
+        startDateInput.setValue(null);
+        durationInput.clear();
+        vehicleInput.setValue(null);
+
+    }
+
+    public Long getVehicleIdFromLicensePlate(String number) throws JsonMappingException, JsonProcessingException {
+        JsonNode vehicleList = mapper.readTree(ResponseHolder.getVehicles());
+        Long id = null;
+        for (JsonNode vehicle : vehicleList) {
+            if (vehicle.get("licensePlate").asText().equals(number)) {
+                id = vehicle.get("id").asLong();
+            }
+        }
+        return id;
+    }
+
+    public void initialize() throws JsonMappingException, JsonProcessingException {
+        JsonNode vehicleList = mapper.readTree(ResponseHolder.getVehicles());
+        ObservableList<String> vehicleNumbers = FXCollections.observableArrayList();
+        for (JsonNode vehicle : vehicleList) {
+            vehicleNumbers.add(vehicle.get("licensePlate").asText());
+        }
+        vehicleInput.setItems(vehicleNumbers);
+
         issueDateCol.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -239,7 +317,8 @@ public class CitationsAndSessionsController {
                 Citation selectedCitation = citationsTable.getSelectionModel().getSelectedItem();
                 if (selectedCitation != null) {
                     // Retrieve driving sessions associated with selected citation
-                    List<DrivingSession> drivingSessions = retrieveDrivingSessions(selectedCitation.getId());
+                    selectedCitationId = selectedCitation.getId();
+                    List<DrivingSession> drivingSessions = retrieveDrivingSessions(selectedCitationId);
 
                     // Populate driving sessions table view with retrieved data
                     drivingSessionTable.setItems(FXCollections.observableArrayList(drivingSessions));
@@ -265,9 +344,6 @@ public class CitationsAndSessionsController {
                     drivingSession.setStartDate(session.get("startDate").asText());
                     drivingSession.setDurationInHours((session.get("durationInHours").asInt()));
                     drivingSession.setNumber(getVehicleNumber(session.get("vehicleId").asText())); // extract vehicle
-                    // number and
-                    // replace
-                    // using this vehicle Id
 
                     sessions.add(drivingSession);
                 }

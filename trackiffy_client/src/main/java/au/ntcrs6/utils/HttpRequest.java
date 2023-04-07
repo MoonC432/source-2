@@ -7,6 +7,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class HttpRequest {
     public String sendGetRequest(String uri, String jsonNode) throws IOException {
         URL url = new URL(Enumerators.BASE_URL + uri + jsonNode);
@@ -48,8 +51,20 @@ public class HttpRequest {
                 response.append(responseLine.trim());
             }
             System.out.println(response.toString());
+
+            if (con.getResponseCode() == 201 || con.getResponseCode() == 200) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setContentText("Created Successfully");
+                alert.show();
+            } else {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setContentText("Failed Request");
+                alert.show();
+            }
+
         }
 
         con.disconnect();
+
     }
 }

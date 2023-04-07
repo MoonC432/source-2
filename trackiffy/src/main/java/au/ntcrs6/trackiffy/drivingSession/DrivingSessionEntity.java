@@ -1,8 +1,10 @@
 package au.ntcrs6.trackiffy.drivingSession;
 
+import java.text.DateFormat;
 import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,18 +19,18 @@ public class DrivingSessionEntity {
     private Long driverId;
     private Long VehicleId;
     private Long citationId; // the citation that was prevented
-    private LocalDateTime startDate;
+    private Date startDate;
     private int durationInHours;
 
     public DrivingSessionEntity(Long driverId, Long vehicleId, Long citationId, String startDate,
 
             int durationInHours) throws ParseException {
-        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
 
         this.driverId = driverId;
         this.VehicleId = vehicleId;
         this.citationId = citationId;
-        this.startDate = LocalDateTime.parse(startDate, dateTimeFormat);
+        this.startDate = dateFormat.parse(startDate);
         this.durationInHours = durationInHours;
     }
 
@@ -67,14 +69,14 @@ public class DrivingSessionEntity {
         this.citationId = citationId;
     }
 
-    public LocalDateTime getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
     public void setStartDate(String startDate) throws ParseException {
-        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
 
-        this.startDate = LocalDateTime.parse(startDate, dateTimeFormat);
+        this.startDate = dateFormat.parse(startDate);
     }
 
     public int getDurationInHours() {

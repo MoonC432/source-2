@@ -1,5 +1,6 @@
 package au.ntcrs6.trackiffy.citation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public class CitationController {
             @RequestParam(name = "driverId", required = true) Long driverId) {
         List<CitationEntity> citations = citationService.getCitaionsByDriverId(driverId);
         if (citations == null || citations.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            citations = new ArrayList<>();
         }
         return ResponseEntity.ok(citations);
     }

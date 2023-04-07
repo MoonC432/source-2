@@ -1,12 +1,16 @@
 package au.ntcrs6.controllers;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import au.ntcrs6.utils.HttpRequest;
 import au.ntcrs6.utils.ResponseHolder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -138,6 +142,30 @@ public class VehicleInfoController {
         public void setVin(String vin) {
             this.vin = vin;
         }
+
+    }
+
+    public void registerANewVehicle() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> vehicledetails = new HashMap<>();
+        JsonNode driver = mapper.readTree(ResponseHolder.getDriverDetails()).get(0);
+
+        vehicledetails.put("make", makeInput.getText());
+        vehicledetails.put("model", modelInput.getText());
+        vehicledetails.put("color", colorInput.getText());
+        vehicledetails.put("licensePlate", licencePlateInput.getText());
+        vehicledetails.put("year", Integer.parseInt(yearInput.getText()));
+        vehicledetails.put("driverId", driver.get("id").asLong());
+
+        String jsonPayload = mapper.writeValueAsString(vehicledetails);
+        HttpRequest request = new HttpRequest();
+        request.sendPostRequest("/api/v1/vehicle/register", jsonPayload);
+
+        makeInput.clear();
+        modelInput.clear();
+        colorInput.clear();
+        licencePlateInput.clear();
+        yearInput.clear();
 
     }
 

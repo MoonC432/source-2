@@ -1,5 +1,6 @@
 package au.ntcrs6.trackiffy.vehicle;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class VehicleController {
             @RequestParam(name = "driverId", required = true) Long driverId) {
         List<VehicleEntity> vehicles = vehicleService.findVehiclesByDriverId(driverId);
         if (vehicles == null || vehicles.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            vehicles = new ArrayList<>();
         }
         return ResponseEntity.ok(vehicles);
 

@@ -29,7 +29,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="registerVehicleButton" layoutX="388.0" layoutY="357.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="212.0" text="Register new Vehicle">
+      <Button fx:id="registerVehicleButton" layoutX="388.0" layoutY="357.0" mnemonicParsing="false" onAction="#registerANewVehicle" prefHeight="58.0" prefWidth="212.0" text="Register new Vehicle">
          <font>
             <Font size="14.0" />
          </font></Button>

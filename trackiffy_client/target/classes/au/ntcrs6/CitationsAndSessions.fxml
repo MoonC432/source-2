@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:controller="au.ntcrs6.controllers.CitationsAndSessionsController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="au.ntcrs6.controllers.CitationsAndSessionsController">
    <children>
       <Label layoutX="202.0" layoutY="14.0" text="Citations Record">
          <font>
@@ -65,7 +64,7 @@
             <TextArea fx:id="descriptionInput" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="issueCitationButton" layoutX="419.0" layoutY="395.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="102.0" text="Issue Citation" />
+      <Button fx:id="issueCitationButton" layoutX="419.0" layoutY="395.0" mnemonicParsing="false" onAction="#createCitation" prefHeight="38.0" prefWidth="102.0" text="Issue Citation" />
       <GridPane layoutX="538.0" layoutY="271.0" prefHeight="123.0" prefWidth="258.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.2" minWidth="10.0" prefWidth="134.40001220703124" />
@@ -107,6 +106,6 @@
             <ComboBox fx:id="vehicleInput" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button fx:id="drivingSessionButton" layoutX="672.0" layoutY="402.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" text="Create Driving Session" />
+      <Button fx:id="drivingSessionButton" layoutX="672.0" layoutY="402.0" mnemonicParsing="false" onAction="#createDrivingSession" prefHeight="38.0" prefWidth="135.0" text="Create Driving Session" />
    </children>
 </AnchorPane>

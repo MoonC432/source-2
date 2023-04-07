@@ -12,13 +12,13 @@ import javafx.stage.PopupWindow;
 public class PopupUtil {
 
     @FXML
-    private StackPane rootPane;
+    private StackPane rootPane = new StackPane();
 
     @FXML
-    private Label messageLabel;
+    private Label messageLabel = new Label();
 
-    public void showPopup(boolean success, String messageString) {
-        String message = success ? messageString : "Request failed";
+    public void showPopup(boolean success) {
+        String message = success ? "Created Successfully" : "Request failed";
         messageLabel.setText(message);
 
         Popup popup = new Popup();

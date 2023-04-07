@@ -1,5 +1,6 @@
 package au.ntcrs6.trackiffy.drivingSession;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -41,8 +42,10 @@ public class DrivingSessionController {
     public ResponseEntity<List<DrivingSessionEntity>> getAllSessionUnderDriver(
             @RequestParam(name = "driverId") Long driverId) {
         List<DrivingSessionEntity> sessions = drivingSessionService.getAllDrivingSessionUnderADriver(driverId);
-        if (sessions == null || sessions.isEmpty())
-            return ResponseEntity.notFound().build();
+        if (sessions == null || sessions.isEmpty()) {
+            sessions = new ArrayList<>();
+        }
+
         return ResponseEntity.ok(sessions);
     }
 }

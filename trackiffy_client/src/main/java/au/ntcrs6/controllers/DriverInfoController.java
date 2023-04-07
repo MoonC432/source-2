@@ -123,7 +123,7 @@ public class DriverInfoController {
         return Long.toString(difference) + " years";
     }
 
-    public void seeVehiclesAction(ActionEvent event) throws IOException {
+    public void seeVehiclesAction() throws IOException {
         HttpRequest request = new HttpRequest();
         String vehiclesResponse = request.sendGetRequest("/api/v1/vehicle?driverId=", driver.get("id").asText());
         ResponseHolder.setVehicles(vehiclesResponse);
