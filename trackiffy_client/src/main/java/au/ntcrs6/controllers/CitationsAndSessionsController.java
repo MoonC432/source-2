@@ -3,7 +3,6 @@ package au.ntcrs6.controllers;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import au.ntcrs6.controllers.VehicleInfoController.Vehicle;
 import au.ntcrs6.utils.HttpRequest;
 import au.ntcrs6.utils.ResponseHolder;
 
